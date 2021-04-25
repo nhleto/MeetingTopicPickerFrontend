@@ -1,0 +1,17 @@
+<div class="center">
+  <app-topic-display [chosenTopic]="chosenTopic"></app-topic-display>
+</div>
+
+<span class="center">
+  <button mat-raised-button color="primary" (click)="generateTopic()" (click)="openSnackBar()"
+  [ngClass]="{'seperator': smallBreakpoint == false}"
+  >
+    Click me for a Topic!
+  </button>
+</span>
+
+<div class="center" *ngIf="smallBreakpoint == true">
+    <app-select-dropdown></app-select-dropdown>
+</div>
+
+<app-description-panel></app-description-panel>
