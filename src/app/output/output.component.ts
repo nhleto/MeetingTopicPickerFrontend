@@ -1,20 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Topic } from '../models/Topic';
-import { Subscription } from 'rxjs';
-import { DataTransferService } from '../services/data-transfer.service';
-import { TOPICS } from '../models/12StepTopics';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
-import { FormControl, Validators } from '@angular/forms';
-import {
-  BreakpointObserver,
-  BreakpointState,
-  Breakpoints,
-} from '@angular/cdk/layout';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {Topic} from '../models/Topic';
+import {Subscription} from 'rxjs';
+import {DataTransferService} from '../services/data-transfer.service';
+import {TOPICS} from '../models/12StepTopics';
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
+import {BreakpointObserver, Breakpoints, BreakpointState,} from '@angular/cdk/layout';
+import {CRCTOPICS} from '../models/CRCTopics';
 
 @Component({
   selector: 'app-output',
@@ -25,10 +17,9 @@ export class OutputComponent implements OnInit {
   chosenTopic?: Topic;
   subscription?: Subscription;
   selectedMeetingStyle: any = null;
-  topics: Topic[] = TOPICS;
+  topics!: Topic[];
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  selectFormControl = new FormControl(null, Validators.required);
   smallBreakpoint = false;
 
   constructor(
@@ -52,7 +43,7 @@ export class OutputComponent implements OnInit {
   chooseTopic(): void {
     this.chosenTopic = this.topics[
       Math.floor(Math.random() * this.topics.length)
-    ];
+      ];
   }
 
   generateTopic() {
@@ -69,4 +60,9 @@ export class OutputComponent implements OnInit {
       });
     }
   }
+
+  pickAppropriateTopics() {
+    this.topics = this.selectedMeetingStyle === '12-Step' ? TOPICS : CRCTOPICS;
+  }
 }
+
