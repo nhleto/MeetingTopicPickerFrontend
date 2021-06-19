@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Topic } from '../models/Topic';
 import { Subscription } from 'rxjs';
 import { DataTransferService } from '../services/data-transfer.service';
-import { TOPICS } from '../models/Topics';
+import { TOPICS } from '../models/12StepTopics';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -45,11 +45,7 @@ export class OutputComponent implements OnInit {
     this.breakpointObserver
       .observe([Breakpoints.XSmall])
       .subscribe((state: BreakpointState) => {
-        if (state.breakpoints[Breakpoints.XSmall]) {
-          this.smallBreakpoint = true;
-        } else {
-          this.smallBreakpoint = false;
-        }
+        this.smallBreakpoint = state.breakpoints[Breakpoints.XSmall];
       });
   }
 
