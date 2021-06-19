@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" style="margin-bottom: 75px">
+<mat-toolbar [ngClass]="smallBreakpoint ? 'reduced-margin': 'expanded-margin'" color="primary">
   <mat-icon aria-hidden="false" style="margin-right: 5px">home</mat-icon>
   <span>Meeting Topic Picker</span>
   <span class="example-spacer"></span>

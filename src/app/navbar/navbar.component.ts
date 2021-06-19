@@ -19,11 +19,7 @@ export class NavbarComponent implements OnInit {
     this.breakpointObserver
     .observe([Breakpoints.XSmall])
     .subscribe((state: BreakpointState) => {
-      if (state.breakpoints[Breakpoints.XSmall]) {
-        this.smallBreakpoint = true;
-      } else {
-        this.smallBreakpoint = false;
-      }
+      this.smallBreakpoint = state.breakpoints[Breakpoints.XSmall];
     });
    }
 

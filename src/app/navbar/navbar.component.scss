@@ -1,16 +1,23 @@
 .example-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .mat-toolbar-row, .mat-toolbar-single-row {
-    min-height: 64px;
+  min-height: 64px;
 }
 
-.mat-select-panel{
-    width: 0;
+.mat-select-panel {
+  width: 0;
 }
 
-.collapsed-width{
-    // width: 5rem;
-    display: none;
+.collapsed-width {
+  display: none;
+}
+
+.reduced-margin {
+  margin-bottom: 25px;
+}
+
+.expanded-margin {
+  margin-bottom: 75px;
 }

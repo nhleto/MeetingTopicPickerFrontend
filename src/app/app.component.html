@@ -1,6 +1,8 @@
-<app-navbar></app-navbar>
-<div class="section">
+<div [ngClass]="{'container': smallBreakpoint}">
+  <app-navbar></app-navbar>
+  <div class="section">
     <div class="column">
-        <app-output></app-output>
+      <app-output></app-output>
     </div>
+  </div>
 </div>
