@@ -1,6 +1,5 @@
 export const CRCTOPICS = [
   {id: 1, body: 'Am I Different?'},
-  {id: 2, body: 'Are Alcoholics Perfectionists?'},
   {id: 3, body: 'Are We Passing It On?'},
   {id: 4, body: 'Are We Victims?'},
   {id: 5, body: 'Attracting Trouble'},
