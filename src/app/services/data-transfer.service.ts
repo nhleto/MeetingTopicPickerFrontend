@@ -11,22 +11,22 @@ export class DataTransferService {
   topic!: string;
   chosenSet!: Topic[];
   selectTopicSource = new BehaviorSubject(null);
-  selectedTopic = this.selectTopicSource.asObservable();
+  $selectedTopic = this.selectTopicSource.asObservable();
   selectedTopicSet = new BehaviorSubject(TOPICS);
+  $selectedTopicSet = this.selectedTopicSet.asObservable();
 
   constructor() {
   }
 
   changeSelected(topic: any): void {
-    console.log(topic);
     this.topic = topic;
     this.selectTopicSource.next(topic);
   }
 
-  changeTopicSet(topics: Topic[]) {
-    this.selectedTopicSet.next(this.chosenSet);
+  changeTopicSet() {
     this.chosenSet = this.chooseTopicSet();
+    this.selectedTopicSet.next(this.chosenSet);
   }
 
-  chooseTopicSet = () => this.topic === '12-Step' ? TOPICS : CRCTOPICS;
+  chooseTopicSet = (): Topic[] => this.topic === '12-Step' ? TOPICS : CRCTOPICS;
 }

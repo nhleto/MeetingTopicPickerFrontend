@@ -1,6 +1,6 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import {BreakpointObserver, Breakpoints, BreakpointState,} from '@angular/cdk/layout';
+import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
 import {DataTransferService} from '../services/data-transfer.service';
 import {Subscription} from 'rxjs';
 
@@ -22,7 +22,7 @@ export class SelectDropdownComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-    this.subscription = this.data.selectedTopic.subscribe(
+    this.subscription = this.data.$selectedTopic.subscribe(
       (topic) => (this.selectedMeetingStyle = topic)
     );
     this.breakpointObserver
@@ -33,6 +33,7 @@ export class SelectDropdownComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
+    this.data.changeTopicSet();
     this.data.changeSelected(this.selectedMeetingStyle);
   }
 }
