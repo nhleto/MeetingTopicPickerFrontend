@@ -3,7 +3,7 @@
 </div>
 
 <span class="center">
-  <button [ngClass]="{'reduced-margin': smallBreakpoint === false}" (click)="openSnackBar()" mat-raised-button>
+  <button [ngClass]="{'bottom-margin': !smallBreakpoint}" (click)="openSnackBar()" mat-raised-button>
     Click me for a Topic!
   </button>
 </span>
