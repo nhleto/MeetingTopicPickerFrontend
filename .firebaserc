@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "meeting-topic-picker": {
+      "hosting": {
+        "MeetingTopicPickerFrontend": [
+          "meeting-topic-picker"
+        ]
+      }
+    }
+  }
+}
