@@ -30,5 +30,13 @@ export class DataTransferService {
     this.selectedTopicSet.next(this.chosenSet);
   }
 
+  // chooseTopicSet(): Observable<Topic[]> {
+  //   if (this.topic === '12-Step') {
+  //     return this.firestore.collection<Topic>('12StepTopics').valueChanges();
+  //   } else {
+  //     return this.firestore.collection<Topic>('CRCTopics').valueChanges();
+  //   }
+  // }
+
   chooseTopicSet = (): Topic[] => this.topic === '12-Step' ? TOPICS : CRCTOPICS;
 }
