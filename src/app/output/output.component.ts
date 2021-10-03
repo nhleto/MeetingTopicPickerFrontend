@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Topic} from '../models/Topic';
-import {DataTransferService} from '../services/data-transfer.service';
+import {DataTransferService} from '../Services/data-transfer.service';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
 import {BreakpointObserver, Breakpoints, BreakpointState,} from '@angular/cdk/layout';
 

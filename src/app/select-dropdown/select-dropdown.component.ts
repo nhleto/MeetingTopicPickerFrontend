@@ -1,7 +1,7 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
-import {DataTransferService} from '../services/data-transfer.service';
+import {DataTransferService} from '../Services/data-transfer.service';
 import {Subscription} from 'rxjs';
 
 @Component({
