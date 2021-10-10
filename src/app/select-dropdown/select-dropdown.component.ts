@@ -24,7 +24,7 @@ export class SelectDropdownComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-    this.firestore.collection('12StepTopics').valueChanges().subscribe(value => console.log(value));
+    // this.firestore.collection('12StepTopics').valueChanges().subscribe(value => console.log(value));
 
     this.subscription = this.data.$selectedTopic.subscribe(
       (topic) => (this.selectedMeetingStyle = topic)

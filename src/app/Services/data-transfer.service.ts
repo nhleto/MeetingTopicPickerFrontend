@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {TOPICS} from '../models/12StepTopics';
-import {CRCTOPICS} from '../models/CRCTopics';
-import {Topic} from '../models/Topic';
-import {AngularFirestore} from '@angular/fire/firestore';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { TOPICS } from '../models/12StepTopics';
+import { CRCTOPICS } from '../models/CRCTopics';
+import { Topic } from '../models/Topic';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +18,10 @@ export class DataTransferService {
   $selectedTopicSet = this.selectedTopicSet.asObservable();
 
   constructor(private firestore: AngularFirestore) {
+    this.firestore
+      .collection('12StepTopics')
+      .valueChanges()
+      .subscribe((value) => console.log(value));
   }
 
   changeSelected(topic: any): void {
@@ -38,5 +42,6 @@ export class DataTransferService {
   //   }
   // }
 
-  chooseTopicSet = (): Topic[] => this.topic === '12-Step' ? TOPICS : CRCTOPICS;
+  chooseTopicSet = (): Topic[] =>
+    this.topic === '12-Step' ? TOPICS : CRCTOPICS;
 }
