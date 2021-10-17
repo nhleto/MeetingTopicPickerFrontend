@@ -15,14 +15,18 @@ export class DataTransferService {
   items!: Observable<any>;
   selectTopicSource = new BehaviorSubject(null);
   $selectedTopic = this.selectTopicSource.asObservable();
+  selectedTopicSet$ = new Observable<Topic[]>();
   // $selectedTopicSet = this.selectedTopicSet.asObservable();
 
   constructor(private itemMapper: ItemMapperService) {}
 
   changeSelected(topic: any): void {
-    this.topic = topic;
-    this.selectTopicSource.next(topic);
-
+    if (topic === this.twelveStepTopics) {
+      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.twelveStepTopics);
+    } else {
+      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.CRCTopics);
+    }
+    // this.selectTopicSource.next(topic);
   }
 
   changeTopicSet() {
@@ -38,11 +42,15 @@ export class DataTransferService {
   //   }
   // }
 
-  chooseTopicSet(): Observable<Topic[]> {
-    if (this.topic === this.twelveStepTopics) {
-      return this.itemMapper.getTopicCollection(this.twelveStepTopics);
+  chooseIndividualTopic() {
+
+  }
+
+  chooseTopicSet(topic: string): void {
+    if (topic === this.twelveStepTopics) {
+      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.twelveStepTopics);
     } else {
-      return this.itemMapper.getTopicCollection(this.CRCTopics);
+      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.CRCTopics);
     }
   }
 }

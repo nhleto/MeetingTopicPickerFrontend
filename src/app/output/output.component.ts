@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {Topic} from '../models/Topic';
 import {DataTransferService} from '../Services/data-transfer.service';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
-import {BreakpointObserver, Breakpoints, BreakpointState,} from '@angular/cdk/layout';
+import {BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import {ItemMapperService} from '../Services/item-mapper.service';
 
 @Component({
@@ -32,11 +32,11 @@ export class OutputComponent implements OnInit {
       (topic) => (this.selectedMeetingStyle = topic)
     );
 
-    // this.data.$selectedTopicSet.subscribe(
-    //   (topicSet: Topic[]) => {
-    //     this.topics = topicSet;
-    //   }
-    // );
+    this.data.selectedTopicSet$.subscribe(
+      (topicSet: Topic[]) => {
+        this.topics = topicSet;
+      }
+    );
 
     this.$breakpointObserver
       .observe([Breakpoints.XSmall])

@@ -33,7 +33,6 @@ export class SelectDropdownComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    // This is getting removed... I dont think it does anything.
     this.data.changeTopicSet();
     this.data.changeSelected(this.selectedMeetingStyle);
   }
