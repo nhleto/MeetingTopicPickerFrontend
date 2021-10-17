@@ -26,7 +26,7 @@ export class DataTransferService {
     } else {
       this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.CRCTopics);
     }
-    // this.selectTopicSource.next(topic);
+    this.selectTopicSource.next(topic);
   }
 
   changeTopicSet() {
