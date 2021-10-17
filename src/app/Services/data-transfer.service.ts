@@ -3,7 +3,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { TOPICS } from '../models/12StepTopics';
 import { CRCTOPICS } from '../models/CRCTopics';
 import { Topic } from '../models/Topic';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {ItemMapperService} from './item-mapper.service';
+import {CR} from '@angular/compiler/src/i18n/serializers/xml_helper';
 
 @Injectable({
   providedIn: 'root',
@@ -17,16 +18,18 @@ export class DataTransferService {
   selectedTopicSet = new BehaviorSubject(TOPICS);
   $selectedTopicSet = this.selectedTopicSet.asObservable();
 
-  constructor(private firestore: AngularFirestore) {
-    this.firestore
-      .collection('12StepTopics')
-      .valueChanges()
-      .subscribe((value) => console.log(value));
-  }
+  constructor(private itemMapper: ItemMapperService) {}
 
   changeSelected(topic: any): void {
     this.topic = topic;
     this.selectTopicSource.next(topic);
+
+  }
+
+  writeTopic() {
+    CRCTOPICS.forEach(t => {
+      this.itemMapper.writeTopicCollection(t, 'CRCTopics');
+    });
   }
 
   changeTopicSet() {

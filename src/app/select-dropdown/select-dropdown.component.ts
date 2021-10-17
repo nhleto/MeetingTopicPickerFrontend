@@ -3,7 +3,6 @@ import {FormControl, Validators} from '@angular/forms';
 import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
 import {DataTransferService} from '../Services/data-transfer.service';
 import {Subscription} from 'rxjs';
-import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-select-dropdown',
@@ -19,13 +18,10 @@ export class SelectDropdownComponent implements OnInit, DoCheck {
   constructor(
     public breakpointObserver: BreakpointObserver,
     private data: DataTransferService,
-    private firestore: AngularFirestore
   ) {
   }
 
   ngOnInit(): void {
-    // this.firestore.collection('12StepTopics').valueChanges().subscribe(value => console.log(value));
-
     this.subscription = this.data.$selectedTopic.subscribe(
       (topic) => (this.selectedMeetingStyle = topic)
     );

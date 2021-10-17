@@ -4,6 +4,7 @@ import {Topic} from '../models/Topic';
 import {DataTransferService} from '../Services/data-transfer.service';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
 import {BreakpointObserver, Breakpoints, BreakpointState,} from '@angular/cdk/layout';
+import {ItemMapperService} from '../Services/item-mapper.service';
 
 @Component({
   selector: 'app-output',
@@ -57,6 +58,7 @@ export class OutputComponent implements OnInit {
   }
 
   openSnackBar() {
+    this.data.writeTopic();
     this.generateTopic();
     if (this.selectedMeetingStyle == null) {
       this.snackBar.open('Please Choose a Meeting Style', 'Close', {
