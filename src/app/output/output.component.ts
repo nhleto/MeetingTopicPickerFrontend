@@ -32,11 +32,11 @@ export class OutputComponent implements OnInit {
       (topic) => (this.selectedMeetingStyle = topic)
     );
 
-    this.data.$selectedTopicSet.subscribe(
-      (topicSet: Topic[]) => {
-        this.topics = topicSet;
-      }
-    );
+    // this.data.$selectedTopicSet.subscribe(
+    //   (topicSet: Topic[]) => {
+    //     this.topics = topicSet;
+    //   }
+    // );
 
     this.$breakpointObserver
       .observe([Breakpoints.XSmall])
@@ -58,7 +58,6 @@ export class OutputComponent implements OnInit {
   }
 
   openSnackBar() {
-    this.data.writeTopic();
     this.generateTopic();
     if (this.selectedMeetingStyle == null) {
       this.snackBar.open('Please Choose a Meeting Style', 'Close', {

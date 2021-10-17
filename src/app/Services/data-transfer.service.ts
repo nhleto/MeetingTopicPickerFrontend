@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { TOPICS } from '../models/12StepTopics';
-import { CRCTOPICS } from '../models/CRCTopics';
 import { Topic } from '../models/Topic';
 import {ItemMapperService} from './item-mapper.service';
-import {CR} from '@angular/compiler/src/i18n/serializers/xml_helper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataTransferService {
+  twelveStepTopics = '12StepTopics';
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  CRCTopics = 'CRCTopics';
   topic!: string;
   chosenSet!: Topic[];
   items!: Observable<any>;
   selectTopicSource = new BehaviorSubject(null);
   $selectedTopic = this.selectTopicSource.asObservable();
-  selectedTopicSet = new BehaviorSubject(TOPICS);
-  $selectedTopicSet = this.selectedTopicSet.asObservable();
+  // $selectedTopicSet = this.selectedTopicSet.asObservable();
 
   constructor(private itemMapper: ItemMapperService) {}
 
@@ -26,15 +25,9 @@ export class DataTransferService {
 
   }
 
-  writeTopic() {
-    CRCTOPICS.forEach(t => {
-      this.itemMapper.writeTopicCollection(t, 'CRCTopics');
-    });
-  }
-
   changeTopicSet() {
-    this.chosenSet = this.chooseTopicSet();
-    this.selectedTopicSet.next(this.chosenSet);
+    // this.chosenSet = this.chooseTopicSet();
+    // this.selectedTopicSet.next(this.chosenSet);
   }
 
   // chooseTopicSet(): Observable<Topic[]> {
@@ -45,6 +38,11 @@ export class DataTransferService {
   //   }
   // }
 
-  chooseTopicSet = (): Topic[] =>
-    this.topic === '12-Step' ? TOPICS : CRCTOPICS;
+  chooseTopicSet(): Observable<Topic[]> {
+    if (this.topic === this.twelveStepTopics) {
+      return this.itemMapper.getTopicCollection(this.twelveStepTopics);
+    } else {
+      return this.itemMapper.getTopicCollection(this.CRCTopics);
+    }
+  }
 }
