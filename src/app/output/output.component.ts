@@ -28,7 +28,7 @@ export class OutputComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data.$selectedTopic.subscribe(
+    this.data.dropdownTopic.subscribe(
       (topic) => (this.selectedMeetingStyle = topic)
     );
 
@@ -53,7 +53,7 @@ export class OutputComponent implements OnInit {
   }
 
   generateTopic() {
-    if (this.selectedMeetingStyle != null) {
+    if (this.selectedMeetingStyle != null && this.topics != null) {
       this.chooseTopic();
     }
   }

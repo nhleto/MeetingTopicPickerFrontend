@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Topic } from '../models/Topic';
 import {ItemMapperService} from './item-mapper.service';
 
@@ -13,18 +13,22 @@ export class DataTransferService {
   topic!: string;
   chosenSet!: Topic[];
   items!: Observable<any>;
-  selectTopicSource = new BehaviorSubject(null);
-  $selectedTopic = this.selectTopicSource.asObservable();
   selectedTopicSet$ = new Observable<Topic[]>();
+  dropdownTopic = new Subject();
+//   dropdownSubscription = new Subscription();
+  private selectTopicSource = new Subject();
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  $selectedTopic = this.selectTopicSource.asObservable();
   // $selectedTopicSet = this.selectedTopicSet.asObservable();
 
   constructor(private itemMapper: ItemMapperService) {}
 
   changeSelected(topic: any): void {
-    if (topic === this.twelveStepTopics) {
+    if (topic === '12-Step') {
       this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.twelveStepTopics);
     } else {
       this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.CRCTopics);
+      this.selectedTopicSet$.subscribe(set => console.log(set));
     }
     this.selectTopicSource.next(topic);
   }

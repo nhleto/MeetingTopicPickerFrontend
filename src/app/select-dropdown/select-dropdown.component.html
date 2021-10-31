@@ -2,7 +2,8 @@
     <mat-label>Choose an option</mat-label>
     <mat-select
       [(value)]="selectedMeetingStyle"
-      [formControl]="selectFormControl">
+      [formControl]="selectFormControl"
+      (selectionChange)="sendMeetingTopic($event)">
       <mat-option value="CRC">CRC</mat-option>
       <mat-option value="12-Step">12 Step</mat-option>
     </mat-select>
