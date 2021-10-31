@@ -1,10 +1,15 @@
-<mat-form-field appearance="fill" [ngClass]="{'collapsed-width' : smallBreakpoint == true}">
-    <mat-label>Choose an option</mat-label>
-    <mat-select
-      [(value)]="selectedMeetingStyle"
-      [formControl]="selectFormControl">
-      <mat-option value="CRC">CRC</mat-option>
-      <mat-option value="12-Step">12 Step</mat-option>
-    </mat-select>
-    <mat-error> This field is required </mat-error>
+<mat-form-field
+  appearance="fill"
+  [ngClass]="{ 'collapsed-width': smallBreakpoint == true }"
+>
+  <mat-label>Choose an option</mat-label>
+  <mat-select
+    [(value)]="selectedMeetingStyle"
+    [formControl]="selectFormControl"
+    (selectionChange)="sendMeetingTopic($event)"
+  >
+    <mat-option value="CRC">CRC</mat-option>
+    <mat-option value="12-Step">12 Step</mat-option>
+  </mat-select>
+  <mat-error> This field is required </mat-error>
 </mat-form-field>

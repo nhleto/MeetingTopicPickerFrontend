@@ -8,9 +8,8 @@ describe('TopicDisplayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopicDisplayComponent ]
-    })
-    .compileComponents();
+      declarations: [TopicDisplayComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

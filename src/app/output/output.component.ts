@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Topic} from '../models/Topic';
-import {DataTransferService} from '../services/data-transfer.service';
+import {DataTransferService} from '../Services/data-transfer.service';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
 import {BreakpointObserver, Breakpoints, BreakpointState,} from '@angular/cdk/layout';
 
@@ -11,9 +11,9 @@ import {BreakpointObserver, Breakpoints, BreakpointState,} from '@angular/cdk/la
   styleUrls: ['./output.component.scss'],
 })
 export class OutputComponent implements OnInit {
-  chosenTopic?: Topic;
+  chosenTopic: Topic;
   selectedMeetingStyle: any = null;
-  topics!: Topic[];
+  topics: any;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   smallBreakpoint = false;
@@ -22,21 +22,20 @@ export class OutputComponent implements OnInit {
     public dialog: MatDialog,
     private data: DataTransferService,
     private snackBar: MatSnackBar,
-    private $breakpointObserver: BreakpointObserver
+    private $breakpointObserver: BreakpointObserver,
   ) {
   }
 
   ngOnInit(): void {
-    this.data.$selectedTopic.subscribe(
-      (topic) => (this.selectedMeetingStyle = topic)
-    );
+    this.data.dropdownTopic.subscribe(
+      (topic) => {
+        this.selectedMeetingStyle = topic;
+        this.data.chooseTopicSet(topic as string);
+      });
 
-    this.data.$selectedTopicSet.subscribe(
-      (topicSet: Topic[]) => {
-        this.topics = topicSet;
-      }
-    );
+    this.data.selectedTopicSet$.subscribe((topicSet) => this.topics = topicSet);
 
+    // This acutally isnt being used anymore
     this.$breakpointObserver
       .observe([Breakpoints.XSmall])
       .subscribe((state: BreakpointState) => {
@@ -44,20 +43,11 @@ export class OutputComponent implements OnInit {
       });
   }
 
-  chooseTopic(): void {
-    this.chosenTopic = this.topics[
-      Math.floor(Math.random() * this.topics.length)
-      ];
-  }
-
-  generateTopic() {
-    if (this.selectedMeetingStyle != null) {
-      this.chooseTopic();
-    }
-  }
-
   openSnackBar() {
-    this.generateTopic();
+    if (this.selectedMeetingStyle != null && this.topics != null) {
+      this.chosenTopic = this.topics[Math.floor(Math.random() * this.topics.length)];
+    }
+
     if (this.selectedMeetingStyle == null) {
       this.snackBar.open('Please Choose a Meeting Style', 'Close', {
         horizontalPosition: this.horizontalPosition,
@@ -66,4 +56,3 @@ export class OutputComponent implements OnInit {
     }
   }
 }
-

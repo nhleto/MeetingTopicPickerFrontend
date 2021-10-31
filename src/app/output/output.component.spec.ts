@@ -1,4 +1,3 @@
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OutputComponent } from './output.component';
@@ -9,9 +8,8 @@ describe('OutputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OutputComponent ]
-    })
-    .compileComponents();
+      declarations: [OutputComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

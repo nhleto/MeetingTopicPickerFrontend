@@ -1,9 +1,11 @@
-<mat-toolbar [ngClass]="smallBreakpoint ? 'reduced-margin': 'expanded-margin'" color="primary">
+<mat-toolbar
+  [ngClass]="smallBreakpoint ? 'reduced-margin' : 'expanded-margin'"
+  color="primary"
+>
   <mat-icon aria-hidden="false" style="margin-right: 5px">home</mat-icon>
   <span>Meeting Topic Picker</span>
   <span class="example-spacer"></span>
-  <h4
-    [style]="smallBreakpoint == true ? 'display: none' : 'padding-right: 20px'">
+  <h4 [style]="smallBreakpoint ? 'display: none' : 'padding-right: 20px'">
     Meeting Style
   </h4>
   <app-select-dropdown *ngIf="smallBreakpoint == false"></app-select-dropdown>
