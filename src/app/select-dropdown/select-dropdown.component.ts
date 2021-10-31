@@ -39,7 +39,6 @@ export class SelectDropdownComponent implements OnInit {
 
   sendMeetingTopic(topicEvent: any) {
     this.data.dropdownTopic.next(topicEvent.value);
-    console.log(topicEvent.value);
   }
 
   //   ngDoCheck() {

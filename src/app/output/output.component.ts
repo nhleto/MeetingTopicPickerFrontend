@@ -5,43 +5,47 @@ import { DataTransferService } from '../Services/data-transfer.service';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition
+  MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import {
   BreakpointObserver,
   Breakpoints,
-  BreakpointState
+  BreakpointState,
 } from '@angular/cdk/layout';
 import { ItemMapperService } from '../Services/item-mapper.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-output',
   templateUrl: './output.component.html',
-  styleUrls: ['./output.component.scss']
+  styleUrls: ['./output.component.scss'],
 })
 export class OutputComponent implements OnInit {
-  chosenTopic?: Topic;
+  chosenTopic: Topic;
   selectedMeetingStyle: any = null;
-  topics!: Topic[];
+  topics: Topic[];
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   smallBreakpoint = false;
+  subscript = new Subscription();
 
   constructor(
     public dialog: MatDialog,
     private data: DataTransferService,
     private snackBar: MatSnackBar,
-    private $breakpointObserver: BreakpointObserver
+    private $breakpointObserver: BreakpointObserver,
   ) {}
 
   ngOnInit(): void {
-    this.data.dropdownTopic.subscribe((topic) => {
-      console.log(topic);
-      this.selectedMeetingStyle = topic;
-    });
-    //   (topic) => (this.selectedMeetingStyle = topic),
+    this.data.dropdownTopic.subscribe(
+      (topic) => {
+        console.log(`In output component: ${topic}`);
+        this.selectedMeetingStyle = topic;
+        this.data.chooseTopicSet(topic as string);
+      });
 
-    this.data.selectedTopicSet$.subscribe((topicSet: Topic[]) => {
+    this.subscript = this.data.selectedTopicSet$.subscribe((topicSet: Topic[]) => {
+      console.log(`In the output component to get the toic set: ${topicSet}`);
       this.topics = topicSet;
     });
 
@@ -61,7 +65,7 @@ export class OutputComponent implements OnInit {
     if (this.selectedMeetingStyle == null) {
       this.snackBar.open('Please Choose a Meeting Style', 'Close', {
         horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition
+        verticalPosition: this.verticalPosition,
       });
     }
   }

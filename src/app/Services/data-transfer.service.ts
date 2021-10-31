@@ -24,43 +24,23 @@ export class DataTransferService {
   constructor(private itemMapper: ItemMapperService) {}
 
   changeSelected(topic: any): void {
-    if (topic === '12-Step') {
-      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
-        this.twelveStepTopics
-      );
-    } else {
-      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
-        this.CRCTopics
-      );
-      this.selectedTopicSet$.subscribe((set) => console.log(set));
-    }
+    this.fetchFirestoreTopics(topic);
     this.selectTopicSource.next(topic);
   }
-
-  changeTopicSet() {
-    // this.chosenSet = this.chooseTopicSet();
-    // this.selectedTopicSet.next(this.chosenSet);
-  }
-
-  // chooseTopicSet(): Observable<Topic[]> {
-  //   if (this.topic === '12-Step') {
-  //     return this.firestore.collection<Topic>('12StepTopics').valueChanges();
-  //   } else {
-  //     return this.firestore.collection<Topic>('CRCTopics').valueChanges();
-  //   }
-  // }
 
   chooseIndividualTopic() {}
 
   chooseTopicSet(topic: string): void {
-    if (topic === this.twelveStepTopics) {
-      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
-        this.twelveStepTopics
-      );
+    this.fetchFirestoreTopics(topic);
+  }
+
+  private fetchFirestoreTopics(topic: string) {
+    if (topic === '12-Step') {
+      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.twelveStepTopics);
+      this.selectedTopicSet$.subscribe((set) => console.log(set));
     } else {
-      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
-        this.CRCTopics
-      );
+      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.CRCTopics);
+      this.selectedTopicSet$.subscribe((set) => console.log(set));
     }
   }
 }
