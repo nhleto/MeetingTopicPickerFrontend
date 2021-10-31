@@ -38,6 +38,7 @@ export class OutputComponent implements OnInit {
       }
     );
 
+    // This acutally isnt being used anymore
     this.$breakpointObserver
       .observe([Breakpoints.XSmall])
       .subscribe((state: BreakpointState) => {
