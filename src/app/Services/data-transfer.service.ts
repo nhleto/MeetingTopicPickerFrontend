@@ -23,11 +23,6 @@ export class DataTransferService {
 
   constructor(private itemMapper: ItemMapperService) {}
 
-  changeSelected(topic: any): void {
-    this.fetchFirestoreTopics(topic);
-    this.selectTopicSource.next(topic);
-  }
-
   // chooseIndividualTopic() {
     // May want to move the logic for this out of the output component
   // }

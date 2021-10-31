@@ -33,11 +33,7 @@ export class OutputComponent implements OnInit {
         this.data.chooseTopicSet(topic as string);
       });
 
-    this.data.selectedTopicSet$.subscribe((topicSet) => {
-      console.log(`in the SelectedTopicSet$ subscription in the output component`);
-      console.log(topicSet);
-      this.topics = topicSet;
-    });
+    this.data.selectedTopicSet$.subscribe((topicSet) => this.topics = topicSet);
 
     // This acutally isnt being used anymore
     this.$breakpointObserver
@@ -50,7 +46,6 @@ export class OutputComponent implements OnInit {
   openSnackBar() {
     if (this.selectedMeetingStyle != null && this.topics != null) {
       this.chosenTopic = this.topics[Math.floor(Math.random() * this.topics.length)];
-      console.log(this.chosenTopic);
     }
 
     if (this.selectedMeetingStyle == null) {
