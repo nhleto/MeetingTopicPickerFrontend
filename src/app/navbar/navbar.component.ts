@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {
   BreakpointObserver,
   BreakpointState,
-  Breakpoints,
+  Breakpoints
 } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
   smallBreakpoint = false;

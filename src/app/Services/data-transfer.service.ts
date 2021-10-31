@@ -4,7 +4,7 @@ import { Topic } from '../models/Topic';
 import { ItemMapperService } from './item-mapper.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DataTransferService {
   twelveStepTopics = '12StepTopics';
@@ -26,11 +26,11 @@ export class DataTransferService {
   changeSelected(topic: any): void {
     if (topic === '12-Step') {
       this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
-        this.twelveStepTopics,
+        this.twelveStepTopics
       );
     } else {
       this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
-        this.CRCTopics,
+        this.CRCTopics
       );
       this.selectedTopicSet$.subscribe((set) => console.log(set));
     }
@@ -40,9 +40,6 @@ export class DataTransferService {
   changeTopicSet() {
     // this.chosenSet = this.chooseTopicSet();
     // this.selectedTopicSet.next(this.chosenSet);
-    this.dropdownSubscription = this.dropdownTopic.subscribe((topic) => {
-      console.log(`The topic is: ${topic}`);
-    });
   }
 
   // chooseTopicSet(): Observable<Topic[]> {
@@ -58,11 +55,11 @@ export class DataTransferService {
   chooseTopicSet(topic: string): void {
     if (topic === this.twelveStepTopics) {
       this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
-        this.twelveStepTopics,
+        this.twelveStepTopics
       );
     } else {
       this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
-        this.CRCTopics,
+        this.CRCTopics
       );
     }
   }

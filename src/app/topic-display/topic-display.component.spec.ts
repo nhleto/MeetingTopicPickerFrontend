@@ -8,7 +8,7 @@ describe('TopicDisplayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TopicDisplayComponent],
+      declarations: [TopicDisplayComponent]
     }).compileComponents();
   });
 

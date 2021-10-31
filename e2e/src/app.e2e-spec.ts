@@ -11,7 +11,7 @@ describe('workspace-project App', () => {
   it('should display welcome message', async () => {
     await page.navigateTo();
     expect(await page.getTitleText()).toEqual(
-      'MeetingTopicPickerFrontend app is running!',
+      'MeetingTopicPickerFrontend app is running!'
     );
   });
 
@@ -20,8 +20,8 @@ describe('workspace-project App', () => {
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
     expect(logs).not.toContain(
       jasmine.objectContaining({
-        level: logging.Level.SEVERE,
-      } as logging.Entry),
+        level: logging.Level.SEVERE
+      } as logging.Entry)
     );
   });
 });

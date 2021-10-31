@@ -32,7 +32,7 @@ import { environment } from '../environments/environment';
     NavbarComponent,
     TopicDisplayComponent,
     DescriptionPanelComponent,
-    SelectDropdownComponent,
+    SelectDropdownComponent
   ],
   imports: [
     BrowserModule,
@@ -57,10 +57,10 @@ import { environment } from '../environments/environment';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

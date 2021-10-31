@@ -4,7 +4,7 @@ import { Topic } from '../models/Topic';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ItemMapperService {
   constructor(private firestore: AngularFirestore) {}
