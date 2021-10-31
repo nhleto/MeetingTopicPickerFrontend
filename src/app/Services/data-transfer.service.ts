@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Topic } from '../models/Topic';
-import {ItemMapperService} from './item-mapper.service';
+import { ItemMapperService } from './item-mapper.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class DataTransferService {
   items!: Observable<any>;
   selectedTopicSet$ = new Observable<Topic[]>();
   dropdownTopic = new Subject();
-//   dropdownSubscription = new Subscription();
+  dropdownSubscription = new Subscription();
   private selectTopicSource = new Subject();
   // eslint-disable-next-line @typescript-eslint/member-ordering
   $selectedTopic = this.selectTopicSource.asObservable();
@@ -25,10 +25,14 @@ export class DataTransferService {
 
   changeSelected(topic: any): void {
     if (topic === '12-Step') {
-      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.twelveStepTopics);
+      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
+        this.twelveStepTopics,
+      );
     } else {
-      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.CRCTopics);
-      this.selectedTopicSet$.subscribe(set => console.log(set));
+      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
+        this.CRCTopics,
+      );
+      this.selectedTopicSet$.subscribe((set) => console.log(set));
     }
     this.selectTopicSource.next(topic);
   }
@@ -36,6 +40,9 @@ export class DataTransferService {
   changeTopicSet() {
     // this.chosenSet = this.chooseTopicSet();
     // this.selectedTopicSet.next(this.chosenSet);
+    this.dropdownSubscription = this.dropdownTopic.subscribe((topic) => {
+      console.log(`The topic is: ${topic}`);
+    });
   }
 
   // chooseTopicSet(): Observable<Topic[]> {
@@ -46,15 +53,17 @@ export class DataTransferService {
   //   }
   // }
 
-  chooseIndividualTopic() {
-
-  }
+  chooseIndividualTopic() {}
 
   chooseTopicSet(topic: string): void {
     if (topic === this.twelveStepTopics) {
-      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.twelveStepTopics);
+      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
+        this.twelveStepTopics,
+      );
     } else {
-      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(this.CRCTopics);
+      this.selectedTopicSet$ = this.itemMapper.getTopicCollection(
+        this.CRCTopics,
+      );
     }
   }
 }

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Topic} from '../models/Topic';
+import { Component, Input, OnInit } from '@angular/core';
+import { Topic } from '../models/Topic';
 
 @Component({
   selector: 'app-topic-display',
@@ -9,9 +9,7 @@ import {Topic} from '../models/Topic';
 export class TopicDisplayComponent implements OnInit {
   @Input() chosenTopic?: Topic;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

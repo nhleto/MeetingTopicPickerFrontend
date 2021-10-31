@@ -11,8 +11,8 @@ export const environment = {
     storageBucket: 'meeting-topic-picker.appspot.com',
     messagingSenderId: '543883783924',
     appId: '1:543883783924:web:819e4782fe279e5db2b8a1',
-    measurementId: 'G-3FBLS0ZZLS'
-  }
+    measurementId: 'G-3FBLS0ZZLS',
+  },
 };
 
 /*

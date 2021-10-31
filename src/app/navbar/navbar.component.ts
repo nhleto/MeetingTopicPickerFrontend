@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
-    BreakpointObserver,
-    BreakpointState,
-    Breakpoints,
-  } from '@angular/cdk/layout';
+  BreakpointObserver,
+  BreakpointState,
+  Breakpoints,
+} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-navbar',
@@ -17,10 +17,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.breakpointObserver
-    .observe([Breakpoints.XSmall])
-    .subscribe((state: BreakpointState) => {
-      this.smallBreakpoint = state.breakpoints[Breakpoints.XSmall];
-    });
-   }
-
+      .observe([Breakpoints.XSmall])
+      .subscribe((state: BreakpointState) => {
+        this.smallBreakpoint = state.breakpoints[Breakpoints.XSmall];
+      });
+  }
 }

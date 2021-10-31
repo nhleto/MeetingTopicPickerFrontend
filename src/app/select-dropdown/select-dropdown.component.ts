@@ -1,8 +1,12 @@
-import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
-import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
-import {DataTransferService} from '../Services/data-transfer.service';
-import {Observable, Subject, Subscription} from 'rxjs';
+import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import {
+  BreakpointObserver,
+  Breakpoints,
+  BreakpointState,
+} from '@angular/cdk/layout';
+import { DataTransferService } from '../Services/data-transfer.service';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Topic } from '../models/Topic';
 
 @Component({
@@ -19,12 +23,11 @@ export class SelectDropdownComponent implements OnInit {
   constructor(
     public breakpointObserver: BreakpointObserver,
     private data: DataTransferService,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this.data.$selectedTopic.subscribe(
-      (topic) => (this.selectedMeetingStyle = topic)
+      (topic) => (this.selectedMeetingStyle = topic),
     );
 
     this.breakpointObserver
@@ -39,8 +42,8 @@ export class SelectDropdownComponent implements OnInit {
     console.log(topicEvent.value);
   }
 
-//   ngDoCheck() {
-//     // this.data.changeTopicSet();
-//     // this.data.changeSelected(this.selectedMeetingStyle);
-//   }
+  //   ngDoCheck() {
+  //     // this.data.changeTopicSet();
+  //     // this.data.changeSelected(this.selectedMeetingStyle);
+  //   }
 }
